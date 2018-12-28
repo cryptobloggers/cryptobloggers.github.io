@@ -1,0 +1,52 @@
+{
+  "name": "zavz9t-tools",
+  "version": "2.1.1",
+  "description": "Tool to publish posts to several blockchains",
+  "main": "",
+  "author": "Serhiy Walker <zavzyat@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:zavz9t/zavz9t.github.io.git"
+  },
+  "dependencies": {
+    "@scorum/scorum-js": "^2.10.0",
+    "@steemit/steem-js": "^0.7.2",
+    "bootstrap": "^4.1.3",
+    "bootstrap-select": "^1.13.3",
+    "crypto-js": "^3.1.9-1",
+    "fingerprintjs2sync": "^1.5.5",
+    "font-awesome": "^4.7.0",
+    "golos-js": "^0.7.5",
+    "html-to-text": "^4.0.0",
+    "jquery": "^3.3.1",
+    "local-storage": "^1.4.2",
+    "numeral": "^2.0.6",
+    "remarkable": "^1.7.1",
+    "sessionstorage": "^0.1.0",
+    "sleep-promise": "^8.0.1",
+    "sortablejs": "^1.7.0",
+    "sprintf-js": "^1.1.1",
+    "url-parse": "^1.4.4",
+    "viz-world-js": "^0.9.10",
+    "wlsjs-staging": "^0.1.4"
+  },
+  "devDependencies": {
+    "browserify": "latest",
+    "mocha": "^5.2.0",
+    "mock-require": "^3.0.2",
+    "uglify-es": "latest",
+    "watchify": "latest"
+  },
+  "scripts": {
+    "test": "mocha",
+    "postinstall": "./bin/post_install.sh",
+    "build-js-cp": "browserify chain-post/js/app.js | uglifyjs --compress --mangle > chain-post/js/main.min.js",
+    "watch-js-cp": "watchify chain-post/js/app.js -o chain-post/js/main.js",
+    "build-js-v": "browserify voter/js/app.js | uglifyjs --compress --mangle > voter/js/main.min.js",
+    "watch-js-v": "watchify voter/js/app.js -o voter/js/main.js",
+    "build-js-l": "browserify levels/js/app.js | uglifyjs --compress --mangle > levels/js/main.min.js",
+    "watch-js-l": "watchify levels/js/app.js -o levels/js/main.js",
+    "build-js-all": "browserify chain-post/js/app.js | uglifyjs --compress --mangle > chain-post/js/main.min.js && browserify voter/js/app.js | uglifyjs --compress --mangle > voter/js/main.min.js && browserify levels/js/app.js | uglifyjs --compress --mangle > levels/js/main.min.js"
+  }
+}

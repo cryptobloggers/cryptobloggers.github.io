@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="//www.googletagmanager.com/gtag/js?id=UA-126560542-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-126560542-1');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Chain-Post | @zavz9t Tools</title>
+    <meta name="description" content="System for posting articles to several BlockChains by one click." />
+
+    <!-- Facebook metadata -->
+    <meta property="og:url"         content="https://zavz9t.github.io/chain-post/" />
+    <meta property="og:type"        content="article" />
+    <meta property="og:title"       content="Chain-Post System" />
+    <meta property="og:description" content="System for posting articles to several BlockChains by one click." />
+    <meta property="og:image"       content="https://zavz9t.github.io/img/internal/chain-post-logo-short.png" />
+    <meta property="og:site_name"   content="@zavz9t Tools" />
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card"           content="summary">
+    <!--<meta name="twitter:site"           content="@publisher_handle">-->
+    <meta name="twitter:title"          content="Chain-Post System">
+    <meta name="twitter:description"    content="System for posting articles to several BlockChains by one click.">
+    <meta name="twitter:creator"        content="@zavz9t">
+    <meta name="twitter:image"          content="https://zavz9t.github.io/img/internal/chain-post-logo-short.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/lib/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/lib/bootstrap-select.min.css" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/lib/font-awesome.min.css" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/app.css" crossorigin="anonymous">
+</head>
+<body>
+<div class="card text-center">
+    <div id="navigation" class="card-header"></div>
+
+    <div class="card-body">
+        <div class="container">
+            <div class="mx-auto header" style="width: 325px;"><img src="../img/internal/chain-post-logo-s.png" alt="Chain Post"></div>
+
+            <form action="#" method="POST" id="form" class="needs-validation" novalidate>
+                <div class="form-group">
+                    <input type="text" class="form-control form-reset-item" id="title" placeholder="Title" />
+                    <div class="invalid-feedback">
+                        Title cannot be blank.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <textarea id="body" class="form-control form-reset-item" rows="20" placeholder="Write your story..."></textarea>
+                    <div class="invalid-feedback">
+                        Post body cannot be blank.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="tags" class="form-control form-reset-item" placeholder="Tags, the first tag is your main category."/>
+                    <div class="invalid-feedback">
+                        You need to write at least one tag.
+                    </div>
+                </div>
+
+                <input type="hidden" class="form-control form-reset-item" id="images" />
+            </form>
+
+            <hr />
+
+            <div id="result"></div>
+
+        </div>
+    </div>
+</div>
+
+<footer></footer>
+
+    <!-- Form Buttons -->
+    <div id="form-buttons" class="btn-container text-right collapse-buttons collapse show">
+        <button id="submit-form-btn" class="btn btn-primary btn-lg"><i class="fa fa-refresh fa-spin loader"></i> Submit</button>
+        &nbsp;
+        <button id="reset-form-btn" class="btn btn-secondary">Reset Form</button>
+        &nbsp;
+        <button id="reset-accounts-btn" class="btn btn-outline-info">Reset Acc</button>
+    </div>
+
+    <!-- Tools buttons -->
+    <div id="tool-buttons">
+        <div class="show-buttons collapse">
+            <a href="#" title="Show buttons" data-toggle="collapse" data-target=".collapse-buttons" aria-expanded="true" aria-controls="tool-container form-buttons"><img src="../img/tool/downvote-32.png" alt="Show buttons" /></a>
+        </div>
+        <div id="tool-container" class="collapse-buttons collapse show">
+            <img src="../img/tool/info-icon-32.png" alt="info" class="info-tooltip" data-toggle="tooltip" data-placement="left" title="Publish your articles to favorite platforms by one click" />
+            &nbsp;
+            <a href="#" id="facebook-load-btn" title="Load Facebook post to form" data-toggle="modal" data-target="#facebookModal"><img src="../img/logo/facebook-logo-32.png" alt="Facebook" /></a>
+            &nbsp;
+            <a href="#" id="evernote-load-btn" title="Load Evernote shared note to form" data-toggle="modal" data-target="#evernoteModal"><img src="../img/logo/evernote-32.png" alt="Evernote" /></a>
+            &nbsp;
+            <a href="#" id="chain-load-btn" title="Load Chain post to form" data-toggle="modal" data-target="#chainModal"><img src="../img/tool/load-post-32.png" alt="Chain Post Load" /></a>
+            &nbsp;
+            <a href="#" id="postPreviewBtn" title="Post Preview" data-toggle="modal" data-target="#postPreviewModal"><img src="../img/tool/preview-32.png" alt="Preview" /></a>
+            &nbsp;
+        </div>
+        <div class="hide-buttons collapse show">
+            <a href="#" title="Hide buttons" data-toggle="collapse" data-target=".collapse-buttons" aria-expanded="true" aria-controls="tool-container form-buttons"><img src="../img/tool/upvote-32.png" alt="Hide buttons" /></a>
+        </div>
+    </div>
+
+    <!-- Facebook Modal -->
+    <div class="modal fade" id="facebookModal" tabindex="-1" role="dialog" aria-labelledby="facebookTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="facebookTitle">Facebook post load</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline needs-validation" id="facebook-load-form">
+                        <div class="form-group col-md-10">
+                            <input type="text" class="form-control col-md-12" id="facebook-url" placeholder="https://www.facebook.com/" required>
+                            <div class="invalid-feedback">
+                                Facebook URL should be set.
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <button type="submit" class="btn btn-primary">Load</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Evernote Modal -->
+    <div class="modal fade" id="evernoteModal" tabindex="-1" role="dialog" aria-labelledby="evernoteTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="evernoteTitle">Evernote shared note load</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline needs-validation" id="evernote-load-form">
+                        <div class="form-group col-md-10">
+                            <input type="text" class="form-control col-md-12" id="evernote-url" placeholder="https://www.evernote.com/shard/" required>
+                            <div class="invalid-feedback">
+                                Evernote URL should be set.
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <button type="submit" class="btn btn-primary">Load</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chain Modal -->
+    <div class="modal fade" id="chainModal" tabindex="-1" role="dialog" aria-labelledby="chainTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="chainTitle">Load post content from any Chain</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation text-center" id="chain-load-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control col-md-12" id="post-url" placeholder="https://" required>
+                            <div class="invalid-feedback">
+                                Post URL should be set.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="choose-chain" title="Select blockchain" class="selectpicker" data-url-container="#post-url" required>
+                                <option value="" selected>Choose blockchain</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Chain should be selected.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Load</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post Preview Modal -->
+    <div class="modal fade" id="postPreviewModal" tabindex="-1" role="dialog" aria-labelledby="postPreviewModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="postPreviewModalTitle"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <div class="modal-tags"></div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/lib/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script src="../js/lib/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
+    <script src="../js/lib/bootstrap-select.min.js" crossorigin="anonymous"></script>
+
+    <script src="js/main.min.js?t=1545155080"></script>
+</body>
+</html>
