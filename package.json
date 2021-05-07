@@ -27,7 +27,7 @@
     "sleep-promise": "^8.0.1",
     "sortablejs": "^1.7.0",
     "sprintf-js": "^1.1.1",
-    "url-parse": "^1.4.4",
+    "url-parse": "^1.5.0",
     "viz-world-js": "^0.9.10",
     "wlsjs-staging": "^0.1.4"
   },
